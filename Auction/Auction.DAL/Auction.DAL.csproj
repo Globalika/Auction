@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C01F2E31-1FC6-4386-9032-E3A0319D3AD4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Auction.DAL</RootNamespace>
     <AssemblyName>Auction.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,26 +32,94 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.6.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.10\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Filters\Abstract\IFilterable.cs" />
+    <Compile Include="Models\Filters\Impl\BidsFilter.cs" />
+    <Compile Include="Models\Filters\Impl\BidsToBuyerFilter.cs" />
+    <Compile Include="Models\Filters\Impl\BuyersFilter.cs" />
+    <Compile Include="Models\Filters\Impl\CategoriesFilter.cs" />
+    <Compile Include="Models\Filters\Impl\ItemsFilter.cs" />
+    <Compile Include="Models\Filters\Impl\PhotosFilter.cs" />
+    <Compile Include="Models\Filters\Impl\SellersFilter.cs" />
+    <Compile Include="Models\ObjectsMapper.cs" />
+    <Compile Include="Repositories\Abstract\IBaseRepository.cs" />
+    <Compile Include="Repositories\Abstract\IBidsRepository.cs" />
+    <Compile Include="Repositories\Abstract\IBidsToBuyerRepository.cs" />
+    <Compile Include="Repositories\Abstract\IBuyersRepository.cs" />
+    <Compile Include="Repositories\Abstract\ICategoriesRepository.cs" />
+    <Compile Include="Repositories\Abstract\IItemsRepository.cs" />
+    <Compile Include="Repositories\Abstract\IPhotosRepository.cs" />
+    <Compile Include="Repositories\Abstract\ISellersRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Impl\BidsRepository.cs" />
+    <Compile Include="Repositories\Impl\BidsToBuyerRepository.cs" />
+    <Compile Include="Repositories\Impl\BuyersRepository.cs" />
+    <Compile Include="Repositories\Impl\CategoriesRepository.cs" />
+    <Compile Include="Repositories\Impl\ItemsRepository.cs" />
+    <Compile Include="Repositories\Impl\PhotosRepository.cs" />
+    <Compile Include="Repositories\Impl\SellersRepository.cs" />
     <Content Include="Database\drop_tables.sql" />
     <Content Include="Database\import_start_values.sql" />
     <Content Include="Database\create_tables.sql" />
+    <Compile Include="Core\ConnectionManager.cs" />
+    <Compile Include="Core\DbCommandManager.cs" />
+    <Compile Include="Core\DbManager.cs" />
     <Compile Include="Database\MigrationManager.cs" />
-    <Compile Include="PL\Program.cs" />
+    <Compile Include="Models\Entities\Abstract\IBaseEntity.cs" />
+    <Compile Include="Models\Entities\Impl\Bids.cs" />
+    <Compile Include="Models\Entities\Impl\BidsToBuyers.cs" />
+    <Compile Include="Models\Entities\Impl\Buyers.cs" />
+    <Compile Include="Models\Entities\Impl\Categories.cs" />
+    <Compile Include="Models\Entities\Impl\Items.cs" />
+    <Compile Include="Models\Entities\Impl\Photos.cs" />
+    <Compile Include="Models\Entities\Impl\Sellers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Database\tr.sql" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

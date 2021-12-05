@@ -2,19 +2,13 @@
     Id bigint IDENTITY(1,1) PRIMARY KEY not null,
 	Sellers_Username nvarchar(50) not null,
 	Sellers_Password nvarchar(50) not null,
-	Sellers_FirstName nvarchar(50) not null,
-    Sellers_LastName nvarchar(50) not null,
-	Sellers_Email nvarchar(50) not null,
-    Sellers_Phone nvarchar(50) not null
+	Sellers_Email nvarchar(50) not null
 );
 CREATE TABLE tblBuyers(
     Id bigint IDENTITY(1,1) PRIMARY KEY not null,
 	Buyers_Username nvarchar(50) not null,
 	Buyers_Password nvarchar(50) not null,
-	Buyers_FirstName nvarchar(50) not null,
-    Buyers_LastName nvarchar(50) not null,
-	Buyers_Email nvarchar(50) not null,
-    Buyers_Phone nvarchar(50) not null
+	Buyers_Email nvarchar(50) not null
 );
 CREATE TABLE tblCategories (
 	Id bigint IDENTITY(1,1) PRIMARY KEY not null,
@@ -22,14 +16,10 @@ CREATE TABLE tblCategories (
 );
 CREATE TABLE tblItems(
     Id bigint IDENTITY(1,1) PRIMARY KEY not null,
-	Item_Title nvarchar(50) not null,
-	Condition nvarchar(50) not null,
 	Category_ID bigint not null,
 	Seller_ID bigint not null,
 	Buyer_ID bigint,
-	Start_Bid int not null,
-	Ship_Price int,
-	Ship_Date date
+	Start_Bid int not null
 );
 ALTER TABLE tblItems
 	ADD CONSTRAINT FK_Item_Seller FOREIGN KEY (Seller_ID)
@@ -54,9 +44,7 @@ CREATE TABLE tblBids (
 	Id bigint IDENTITY(1,1) PRIMARY KEY not null,
 	Bid_Item_ID bigint not null,
 	Bid_Buyer_ID bigint not null,
-	BidAmount int not null,
-	BidTime date not null,
-	WinStatus nvarchar(10)
+	BidAmount int not null
 );
 ALTER TABLE tblBids
 	ADD CONSTRAINT FK_Bid_Item FOREIGN KEY (Bid_Item_ID)

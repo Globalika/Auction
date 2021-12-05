@@ -1,39 +1,30 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.IO;
+using Auction.DAL.Core;
 
 namespace Auction.DAL.Database
 {
     public class MigrationManager
     {
-        private string conStr;
-        public MigrationManager (string coString)
-        {
-            conStr = coString;
-        }
+        DbManager dbManager = new DbManager();
+
         public bool CreateTables()
         {
             string path = System.IO.Path.GetFullPath(@"..\..\..\Auction.DAL\Database\create_tables.sql");
             string script = File.ReadAllText(path);
-            using (SqlConnection conn = new SqlConnection(this.conStr))
-            using (SqlCommand command = conn.CreateCommand())
-            {
-                conn.Open();
-                command.CommandText = script;
-                SqlDataReader reader = command.ExecuteReader();
-            }
+            dbManager.ExecuteNonQuery(script);
             return true;
         }
         public bool DropTables()
         {
             string path = System.IO.Path.GetFullPath(@"..\..\..\Auction.DAL\Database\drop_tables.sql");
+
             string script = File.ReadAllText(path);
-            using (SqlConnection conn = new SqlConnection(this.conStr))
-            using (SqlCommand command = conn.CreateCommand())
-            {
-                conn.Open();
-                command.CommandText = script;
-                SqlDataReader reader = command.ExecuteReader();
-            }
+            dbManager.ExecuteNonQuery(script);
             return true;
         }
 
@@ -41,13 +32,7 @@ namespace Auction.DAL.Database
         {
             string path = System.IO.Path.GetFullPath(@"..\..\..\Auction.DAL\Database\import_start_values.sql");
             string script = File.ReadAllText(path);
-            using (SqlConnection conn = new SqlConnection(this.conStr))
-            using (SqlCommand command = conn.CreateCommand())
-            {
-                conn.Open();
-                command.CommandText = script;
-                SqlDataReader reader = command.ExecuteReader();
-            }
+            dbManager.ExecuteNonQuery(script);
             return true;
         }
     }
