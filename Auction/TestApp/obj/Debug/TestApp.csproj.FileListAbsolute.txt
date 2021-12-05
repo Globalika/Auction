@@ -1,0 +1,12 @@
+C:\Users\volod\source\Auction\Auction\TestApp\bin\Debug\TestApp.exe.config
+C:\Users\volod\source\Auction\Auction\TestApp\bin\Debug\TestApp.exe
+C:\Users\volod\source\Auction\Auction\TestApp\bin\Debug\TestApp.pdb
+C:\Users\volod\source\Auction\Auction\TestApp\bin\Debug\Auction.DAL.dll
+C:\Users\volod\source\Auction\Auction\TestApp\bin\Debug\AutoMapper.dll
+C:\Users\volod\source\Auction\Auction\TestApp\bin\Debug\Auction.DAL.pdb
+C:\Users\volod\source\Auction\Auction\TestApp\bin\Debug\AutoMapper.xml
+C:\Users\volod\source\Auction\Auction\TestApp\obj\Debug\TestApp.csproj.AssemblyReference.cache
+C:\Users\volod\source\Auction\Auction\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
+C:\Users\volod\source\Auction\Auction\TestApp\obj\Debug\TestApp.csproj.CopyComplete
+C:\Users\volod\source\Auction\Auction\TestApp\obj\Debug\TestApp.exe
+C:\Users\volod\source\Auction\Auction\TestApp\obj\Debug\TestApp.pdb

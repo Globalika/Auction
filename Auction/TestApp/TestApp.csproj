@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Auction.DAL\Auction.DAL.csproj">
+      <Project>{c01f2e31-1fc6-4386-9032-e3a0319d3ad4}</Project>
+      <Name>Auction.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
