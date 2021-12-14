@@ -29,24 +29,12 @@ namespace Auction.FormsApp
 
         private void ItemAddForm_Load(object sender, EventArgs e)
         {
-            //var categ = new List<String>();
-            //foreach(var cat in catRep.GetAll())
-            //{
-            //    categ.Add(cat.Category);
-            //}
             comboBox1.DataSource = catRep.GetAll();
-            //var sellers = new List<String>();
-            //foreach (var sel in selRep.GetAll())
-            //{
-            //    sellers.Add(sel.Sellers_Username);
-            //}
+            comboBox1.SelectedIndex = -1;
             comboBox4.DataSource = selRep.GetAll();
-            //var bayers = new List<String>();
-            //foreach (var bay in buyRep.GetAll())
-            //{
-            //    bayers.Add(bay.Buyers_Username);
-            //}
+            comboBox4.SelectedIndex = -1;
             comboBox3.DataSource = buyRep.GetAll();
+            comboBox3.SelectedIndex = -1;
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -55,5 +55,11 @@ namespace Auction.FormsApp
         {
             dataGridView1.DataSource = rep.GetAll().ToList();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            BidsManagerForm form = new BidsManagerForm();
+            form.Show();
+        }
     }
 }

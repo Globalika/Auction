@@ -16,3 +16,6 @@ C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsAp
 C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.pdb
 C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.ItemsManagerFrom.resources
 C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.ItemAddForm.resources
+C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.BidsAddForm.resources
+C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.BidsEditForm.resources
+C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.BidsManagerForm.resources

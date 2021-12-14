@@ -36,7 +36,9 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -55,6 +57,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BidsAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BidsAddForm.Designer.cs">
+      <DependentUpon>BidsAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BidsEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BidsEditForm.Designer.cs">
+      <DependentUpon>BidsEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BidsManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BidsManagerForm.Designer.cs">
+      <DependentUpon>BidsManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +95,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BidsAddForm.resx">
+      <DependentUpon>BidsAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BidsEditForm.resx">
+      <DependentUpon>BidsEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BidsManagerForm.resx">
+      <DependentUpon>BidsManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemAddForm.resx">
       <DependentUpon>ItemAddForm.cs</DependentUpon>
     </EmbeddedResource>

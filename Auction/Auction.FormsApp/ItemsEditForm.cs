@@ -30,11 +30,11 @@ namespace Auction.FormsApp
         private void ItemsEditForm_Load(object sender, EventArgs e)
         {
             comboBox1.DataSource = catRep.GetAll();
-            comboBox1.SelectedItem = item.Category_ID;
+            comboBox1.SelectedIndex = (int)(item.Category_ID);
             comboBox4.DataSource = selRep.GetAll();
-            comboBox4.SelectedItem = item.Seller_ID;
+            comboBox4.SelectedIndex = (int)(item.Seller_ID);
             comboBox2.DataSource = buyRep.GetAll();
-            comboBox2.SelectedItem = item.Buyer_ID;
+            comboBox2.SelectedIndex = (int)(item.Buyer_ID);
             textBox1.Text = item.ItemName;
             textBox2.Text = Convert.ToString(item.Start_Bid);
         }

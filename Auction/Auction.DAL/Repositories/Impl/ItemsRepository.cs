@@ -24,6 +24,7 @@ namespace Auction.DAL.Repositories.Impl
                 Items entity = new Items();
                 entity.Id = Convert.ToUInt64(reader["Id"]);
                 entity.Seller_ID = Convert.ToUInt64(reader["Seller_ID"]);
+                entity.Buyer_ID = Convert.ToUInt64(reader["Buyer_ID"]);
                 entity.ItemName = reader["ItemName"].ToString();
                 entity.Category_ID = Convert.ToUInt64(reader["Category_ID"]);
                 entity.Start_Bid = Convert.ToInt32(reader["Start_Bid"]);
@@ -52,6 +53,10 @@ namespace Auction.DAL.Repositories.Impl
                 if (filter.Seller_ID != null)
                 {
                     parameters.Add(dbManager.CreateParameter(prefix + "Seller_ID", 50, filter.Seller_ID, DbType.Int64));
+                }
+                if (filter.Buyer_ID != null)
+                {
+                    parameters.Add(dbManager.CreateParameter(prefix + "Buyer_ID", 50, filter.Buyer_ID, DbType.Int64));
                 }
                 if (filter.ItemName != null)
                 {
@@ -91,6 +96,10 @@ namespace Auction.DAL.Repositories.Impl
             if (entity.Seller_ID != null)
             {
                 valuesList.Add("Seller_ID");
+            }
+            if (entity.Buyer_ID != null)
+            {
+                valuesList.Add("Buyer_ID");
             }
             if (entity.ItemName != null)
             {
