@@ -29,3 +29,4 @@ DROP TABLE dbo.tblItems;
 END
 DROP TABLE IF EXISTS dbo.tblSellers;
 DROP TABLE IF EXISTS dbo.tblCategories;
+DROP TRIGGER IF EXISTS belowZero;

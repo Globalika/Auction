@@ -17,7 +17,6 @@ namespace Auction.DAL.Core
         {
             string command = string.Format("Insert into {0} " +
                 "( {1} ) " +
-                "output inserted.Id " +
                 "values " +
                 "( {2} );",
                 _tableName,

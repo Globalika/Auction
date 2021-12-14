@@ -19,6 +19,7 @@ namespace Auction.FormsApp
             migration.DropTables();
             migration.CreateTables();
             migration.ImportStartValues();
+            migration.AddTriggers();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

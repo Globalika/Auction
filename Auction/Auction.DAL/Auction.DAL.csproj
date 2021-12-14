@@ -115,7 +115,7 @@
     <Compile Include="Models\Entities\Impl\Photos.cs" />
     <Compile Include="Models\Entities\Impl\Sellers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Database\tr.sql" />
+    <Content Include="Database\below_zero.sql" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -35,5 +35,13 @@ namespace Auction.DAL.Database
             dbManager.ExecuteNonQuery(script);
             return true;
         }
+
+        public bool AddTriggers()
+        {
+            string path = System.IO.Path.GetFullPath(@"..\..\..\Auction.DAL\Database\below_zero.sql");
+            string script = File.ReadAllText(path);
+            dbManager.ExecuteNonQuery(script);
+            return true;
+        }
     }
 }

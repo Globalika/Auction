@@ -19,3 +19,4 @@ C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsAp
 C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.BidsAddForm.resources
 C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.BidsEditForm.resources
 C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.BidsManagerForm.resources
+C:\Users\volod\source\Auction\Auction\Auction.FormsApp\obj\Debug\Auction.FormsApp.csproj.CopyComplete
