@@ -18,14 +18,14 @@ VALUES
 ('iuytrer', 'nuytr', '8y7t6r5@gmail.com'),
 ('l;kjhgrty', 'iuyt5re', 'i9u8y76h@gmail.com'),
 ('hiuig65', 'kogtfdrt', '3s4d5f@gmail.com');
-INSERT INTO tblItems(Category_ID, Seller_ID, Buyer_ID, Start_Bid)
+INSERT INTO tblItems(Category_ID, ItemName, Seller_ID, Buyer_ID, Start_Bid)
 VALUES
-(1, 1, 2, 111),
-(3, 2, 1, 111),
-(1, 1, 1, 111),
-(1, 3, 1, 111),
-(3, 1, 1, 111),
-(2, 1, 2, 111);
+(1, 'hhh', 1, 2, 111),
+(3, 'defre', 2, 1, 111),
+(1, 'hyutyf',  1, 1, 111),
+(1, 'tdx', 3, 1, 111),
+(3, 'frgt', 1, 1, 111),
+(2, 'fer', 1, 2, 111);
 INSERT INTO tblPhotos(Item_Id, Photo_Path)
 VALUES
 (1, 'pathdvefw'),
@@ -34,13 +34,13 @@ VALUES
 (4, 'pathujyht'),
 (3, 'pathhiuytr'),
 (1, 'pathuyjth');
-INSERT INTO tblBids(Bid_Item_ID, Bid_Buyer_ID, BidAmount, BidTime)
+INSERT INTO tblBids(Bid_Item_ID, Bid_Buyer_ID, BidAmount)
 VALUES
-(1, 2, 44, convert(datetime, '20210914 10:24:10 PM', 5)),
-(1, 2, 44, convert(datetime, '20210622 06:34:03 PM', 5)),
-(1, 2, 44, convert(datetime, '20211018 04:19:22 AM', 5)),
-(1, 2, 44, convert(datetime, '20210518 10:34:44 AM', 5)),
-(1, 2, 44, convert(datetime, '20210211 11:14:09 AM', 5));
+(1, 2, 44),
+(1, 2, 44),
+(1, 2, 44),
+(1, 2, 44),
+(1, 2, 44);
 INSERT INTO tblBidsToBuyer(Buyer_ID, Bid_ID)
 VALUES
 (1, 2),

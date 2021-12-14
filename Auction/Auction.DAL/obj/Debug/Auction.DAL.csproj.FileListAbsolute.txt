@@ -9,7 +9,6 @@ C:\Users\volod\source\Auction\Auction\Auction.DAL\bin\Debug\System.Security.Prin
 C:\Users\volod\source\Auction\Auction\Auction.DAL\bin\Debug\System.Security.AccessControl.xml
 C:\Users\volod\source\Auction\Auction\Auction.DAL\bin\Debug\System.Security.Permissions.xml
 C:\Users\volod\source\Auction\Auction\Auction.DAL\bin\Debug\System.Security.Principal.Windows.xml
-C:\Users\volod\source\Auction\Auction\Auction.DAL\obj\Debug\Auction.DAL.csproj.CopyComplete
 C:\Users\volod\source\Auction\Auction\Auction.DAL\obj\Debug\Auction.DAL.dll
 C:\Users\volod\source\Auction\Auction\Auction.DAL\bin\Debug\AutoMapper.dll
 C:\Users\volod\source\Auction\Auction\Auction.DAL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll

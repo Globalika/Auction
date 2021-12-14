@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AUCTIONModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblBids">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Bid_Item_ID" Type="bigint" Nullable="false" />
+    <Property Name="Bid_Buyer_ID" Type="bigint" Nullable="false" />
+    <Property Name="BidAmount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBidsToBuyer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Buyer_ID" Type="bigint" Nullable="false" />
+    <Property Name="Bid_ID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBuyers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Buyers_Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Buyers_Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Buyers_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_ID" Type="bigint" Nullable="false" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Seller_ID" Type="bigint" Nullable="false" />
+    <Property Name="Buyer_ID" Type="bigint" />
+    <Property Name="Start_Bid" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AUCTION.dbo.tblPhotos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblPhotos">
+    <Key>
+      <PropertyRef Name="Item_Id" />
+      <PropertyRef Name="Photo_Path" />
+    </Key>
+    <Property Name="Item_Id" Type="bigint" Nullable="false" />
+    <Property Name="Photo_Path" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSellers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sellers_Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sellers_Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sellers_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Bid">
+    <End Role="tblBids" Type="Self.tblBids" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBidsToBuyer" Type="Self.tblBidsToBuyer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBids">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBidsToBuyer">
+        <PropertyRef Name="Bid_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bid_Item">
+    <End Role="tblItems" Type="Self.tblItems" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBids" Type="Self.tblBids" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBids">
+        <PropertyRef Name="Bid_Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buyer_Bid">
+    <End Role="tblBuyers" Type="Self.tblBuyers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBidsToBuyer" Type="Self.tblBidsToBuyer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBuyers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBidsToBuyer">
+        <PropertyRef Name="Buyer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category">
+    <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblItems" Type="Self.tblItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblItems">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item">
+    <End Role="tblItems" Type="Self.tblItems" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblPhotos" Type="Self.tblPhotos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblPhotos">
+        <PropertyRef Name="Item_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Seller">
+    <End Role="tblSellers" Type="Self.tblSellers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblItems" Type="Self.tblItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSellers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblItems">
+        <PropertyRef Name="Seller_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AUCTIONModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBids" EntityType="Self.tblBids" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBidsToBuyer" EntityType="Self.tblBidsToBuyer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBuyers" EntityType="Self.tblBuyers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblItems" EntityType="Self.tblItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSellers" EntityType="Self.tblSellers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPhotos" EntityType="Self.tblPhotos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[tblPhotos].[Item_Id] AS [Item_Id], 
+[tblPhotos].[Photo_Path] AS [Photo_Path]
+FROM [dbo].[tblPhotos] AS [tblPhotos]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Bid" Association="Self.FK_Bid">
+      <End Role="tblBids" EntitySet="tblBids" />
+      <End Role="tblBidsToBuyer" EntitySet="tblBidsToBuyer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bid_Item" Association="Self.FK_Bid_Item">
+      <End Role="tblItems" EntitySet="tblItems" />
+      <End Role="tblBids" EntitySet="tblBids" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buyer_Bid" Association="Self.FK_Buyer_Bid">
+      <End Role="tblBuyers" EntitySet="tblBuyers" />
+      <End Role="tblBidsToBuyer" EntitySet="tblBidsToBuyer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category" Association="Self.FK_Category">
+      <End Role="tblCategories" EntitySet="tblCategories" />
+      <End Role="tblItems" EntitySet="tblItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item" Association="Self.FK_Item">
+      <End Role="tblItems" EntitySet="tblItems" />
+      <End Role="tblPhotos" EntitySet="tblPhotos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Seller" Association="Self.FK_Item_Seller">
+      <End Role="tblSellers" EntitySet="tblSellers" />
+      <End Role="tblItems" EntitySet="tblItems" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

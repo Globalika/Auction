@@ -17,8 +17,9 @@ CREATE TABLE tblCategories (
 CREATE TABLE tblItems(
     Id bigint IDENTITY(1,1) PRIMARY KEY not null,
 	Category_ID bigint not null,
+	ItemName nvarchar(50) not null,
 	Seller_ID bigint not null,
-	Buyer_ID bigint,
+	Buyer_ID bigint not null,
 	Start_Bid int not null
 );
 ALTER TABLE tblItems

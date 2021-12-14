@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AUCTIONModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblBid">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Bid_Item_ID" Type="Int64" Nullable="false" />
+    <Property Name="Bid_Buyer_ID" Type="Int64" Nullable="false" />
+    <Property Name="BidAmount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblBidsToBuyers" Relationship="Self.FK_Bid" FromRole="tblBids" ToRole="tblBidsToBuyer" />
+    <NavigationProperty Name="tblItem" Relationship="Self.FK_Bid_Item" FromRole="tblBids" ToRole="tblItems" />
+  </EntityType>
+  <EntityType Name="tblBidsToBuyer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Buyer_ID" Type="Int64" Nullable="false" />
+    <Property Name="Bid_ID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tblBid" Relationship="Self.FK_Bid" FromRole="tblBidsToBuyer" ToRole="tblBids" />
+    <NavigationProperty Name="tblBuyer" Relationship="Self.FK_Buyer_Bid" FromRole="tblBidsToBuyer" ToRole="tblBuyers" />
+  </EntityType>
+  <EntityType Name="tblBuyer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Buyers_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Buyers_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Buyers_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblBidsToBuyers" Relationship="Self.FK_Buyer_Bid" FromRole="tblBuyers" ToRole="tblBidsToBuyer" />
+  </EntityType>
+  <EntityType Name="tblCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblItems" Relationship="Self.FK_Category" FromRole="tblCategories" ToRole="tblItems" />
+  </EntityType>
+  <EntityType Name="tblItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_ID" Type="Int64" Nullable="false" />
+    <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Seller_ID" Type="Int64" Nullable="false" />
+    <Property Name="Buyer_ID" Type="Int64" />
+    <Property Name="Start_Bid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblBids" Relationship="Self.FK_Bid_Item" FromRole="tblItems" ToRole="tblBids" />
+    <NavigationProperty Name="tblCategory" Relationship="Self.FK_Category" FromRole="tblItems" ToRole="tblCategories" />
+    <NavigationProperty Name="tblPhotos" Relationship="Self.FK_Item" FromRole="tblItems" ToRole="tblPhotos" />
+    <NavigationProperty Name="tblSeller" Relationship="Self.FK_Item_Seller" FromRole="tblItems" ToRole="tblSellers" />
+  </EntityType>
+  <EntityType Name="tblSeller">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sellers_Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sellers_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sellers_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblItems" Relationship="Self.FK_Item_Seller" FromRole="tblSellers" ToRole="tblItems" />
+  </EntityType>
+  <EntityType Name="tblPhoto">
+    <Key>
+      <PropertyRef Name="Item_Id" />
+      <PropertyRef Name="Photo_Path" />
+    </Key>
+    <Property Name="Item_Id" Type="Int64" Nullable="false" />
+    <Property Name="Photo_Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblItem" Relationship="Self.FK_Item" FromRole="tblPhotos" ToRole="tblItems" />
+  </EntityType>
+  <Association Name="FK_Bid">
+    <End Role="tblBids" Type="Self.tblBid" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBidsToBuyer" Type="Self.tblBidsToBuyer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBids">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBidsToBuyer">
+        <PropertyRef Name="Bid_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bid_Item">
+    <End Role="tblItems" Type="Self.tblItem" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBids" Type="Self.tblBid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBids">
+        <PropertyRef Name="Bid_Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Buyer_Bid">
+    <End Role="tblBuyers" Type="Self.tblBuyer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBidsToBuyer" Type="Self.tblBidsToBuyer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBuyers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBidsToBuyer">
+        <PropertyRef Name="Buyer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category">
+    <End Role="tblCategories" Type="Self.tblCategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblItems" Type="Self.tblItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblItems">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item">
+    <End Role="tblItems" Type="Self.tblItem" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblPhotos" Type="Self.tblPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblPhotos">
+        <PropertyRef Name="Item_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Seller">
+    <End Role="tblSellers" Type="Self.tblSeller" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblItems" Type="Self.tblItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSellers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblItems">
+        <PropertyRef Name="Seller_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AUCTIONEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblBids" EntityType="Self.tblBid" />
+    <EntitySet Name="tblBidsToBuyers" EntityType="Self.tblBidsToBuyer" />
+    <EntitySet Name="tblBuyers" EntityType="Self.tblBuyer" />
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+    <EntitySet Name="tblItems" EntityType="Self.tblItem" />
+    <EntitySet Name="tblSellers" EntityType="Self.tblSeller" />
+    <EntitySet Name="tblPhotos" EntityType="Self.tblPhoto" />
+    <AssociationSet Name="FK_Bid" Association="Self.FK_Bid">
+      <End Role="tblBids" EntitySet="tblBids" />
+      <End Role="tblBidsToBuyer" EntitySet="tblBidsToBuyers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bid_Item" Association="Self.FK_Bid_Item">
+      <End Role="tblItems" EntitySet="tblItems" />
+      <End Role="tblBids" EntitySet="tblBids" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Buyer_Bid" Association="Self.FK_Buyer_Bid">
+      <End Role="tblBuyers" EntitySet="tblBuyers" />
+      <End Role="tblBidsToBuyer" EntitySet="tblBidsToBuyers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category" Association="Self.FK_Category">
+      <End Role="tblCategories" EntitySet="tblCategories" />
+      <End Role="tblItems" EntitySet="tblItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item" Association="Self.FK_Item">
+      <End Role="tblItems" EntitySet="tblItems" />
+      <End Role="tblPhotos" EntitySet="tblPhotos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Seller" Association="Self.FK_Item_Seller">
+      <End Role="tblSellers" EntitySet="tblSellers" />
+      <End Role="tblItems" EntitySet="tblItems" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AUCTIONModelStoreContainer" CdmEntityContainer="AUCTIONEntities2">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AUCTIONModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBids">
+      <EntityTypeMapping TypeName="AUCTIONModel.tblBid">
+        <MappingFragment StoreEntitySet="tblBids">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Bid_Item_ID" ColumnName="Bid_Item_ID" />
+          <ScalarProperty Name="Bid_Buyer_ID" ColumnName="Bid_Buyer_ID" />
+          <ScalarProperty Name="BidAmount" ColumnName="BidAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBidsToBuyers">
+      <EntityTypeMapping TypeName="AUCTIONModel.tblBidsToBuyer">
+        <MappingFragment StoreEntitySet="tblBidsToBuyer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Buyer_ID" ColumnName="Buyer_ID" />
+          <ScalarProperty Name="Bid_ID" ColumnName="Bid_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBuyers">
+      <EntityTypeMapping TypeName="AUCTIONModel.tblBuyer">
+        <MappingFragment StoreEntitySet="tblBuyers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Buyers_Username" ColumnName="Buyers_Username" />
+          <ScalarProperty Name="Buyers_Password" ColumnName="Buyers_Password" />
+          <ScalarProperty Name="Buyers_Email" ColumnName="Buyers_Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCategories">
+      <EntityTypeMapping TypeName="AUCTIONModel.tblCategory">
+        <MappingFragment StoreEntitySet="tblCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblItems">
+      <EntityTypeMapping TypeName="AUCTIONModel.tblItem">
+        <MappingFragment StoreEntitySet="tblItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Seller_ID" ColumnName="Seller_ID" />
+          <ScalarProperty Name="Buyer_ID" ColumnName="Buyer_ID" />
+          <ScalarProperty Name="Start_Bid" ColumnName="Start_Bid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSellers">
+      <EntityTypeMapping TypeName="AUCTIONModel.tblSeller">
+        <MappingFragment StoreEntitySet="tblSellers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Sellers_Username" ColumnName="Sellers_Username" />
+          <ScalarProperty Name="Sellers_Password" ColumnName="Sellers_Password" />
+          <ScalarProperty Name="Sellers_Email" ColumnName="Sellers_Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPhotos">
+      <EntityTypeMapping TypeName="AUCTIONModel.tblPhoto">
+        <MappingFragment StoreEntitySet="tblPhotos">
+          <ScalarProperty Name="Item_Id" ColumnName="Item_Id" />
+          <ScalarProperty Name="Photo_Path" ColumnName="Photo_Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
